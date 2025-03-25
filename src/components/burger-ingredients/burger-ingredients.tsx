@@ -3,9 +3,8 @@ import { useInView } from 'react-intersection-observer';
 
 import { TTabMode } from '@utils-types';
 import { BurgerIngredientsUI } from '../ui/burger-ingredients';
-import store from 'src/services/store';
 import { useSelector } from 'react-redux';
-import { RootState } from 'src/services/store'; // Adjust the path to your store file if necessary
+import { RootState } from 'src/services/store';
 
 export const BurgerIngredients: FC = () => {
   const ingredients = useSelector(

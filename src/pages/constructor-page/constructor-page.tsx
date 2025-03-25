@@ -6,10 +6,13 @@ import { BurgerIngredients } from '../../components';
 import { BurgerConstructor } from '../../components';
 import { Preloader } from '../../components/ui';
 import { FC } from 'react';
+import { RootState } from 'src/services/store'; // Adjust the path to your store file if necessary
 
 export const ConstructorPage: FC = () => {
-  /** TODO: взять переменную из стора */
-  const isIngredientsLoading = false;
+  /** done-TODO: взять переменную из стора */
+  const isIngredientsLoading = useSelector(
+    (state: RootState) => state.ingredients.isLoading
+  );
 
   return (
     <>

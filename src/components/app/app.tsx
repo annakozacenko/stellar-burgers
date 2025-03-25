@@ -18,6 +18,7 @@ import { ProtectedRoute } from '../protected-route/protected-route';
 import store, { useDispatch, useSelector } from '../../services/store';
 import { useEffect } from 'react';
 import { getIngredients } from '../../slices/ingredientsSlice';
+import { checkUserAuth } from '../../slices/userSlice';
 
 const App = () => {
   const navigate = useNavigate();
@@ -26,9 +27,12 @@ const App = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getIngredients());
+    dispatch(checkUserAuth());
   }, [dispatch]);
-  const somt = useSelector((state) => state.constructorItems);
+
+  const somt = useSelector((state) => state.orders.feed);
   console.log('вывод состояния', somt);
+
   return (
     <div className={styles.app}>
       <AppHeader />
@@ -40,7 +44,7 @@ const App = () => {
         <Route
           path='/login'
           element={
-            <ProtectedRoute>
+            <ProtectedRoute onlyUnAuth>
               <Login />
             </ProtectedRoute>
           }
@@ -48,7 +52,7 @@ const App = () => {
         <Route
           path='/register'
           element={
-            <ProtectedRoute>
+            <ProtectedRoute onlyUnAuth>
               <Register />
             </ProtectedRoute>
           }
@@ -56,7 +60,7 @@ const App = () => {
         <Route
           path='/forgot-password'
           element={
-            <ProtectedRoute>
+            <ProtectedRoute onlyUnAuth>
               <ForgotPassword />
             </ProtectedRoute>
           }
@@ -64,7 +68,7 @@ const App = () => {
         <Route
           path='/reset-password'
           element={
-            <ProtectedRoute>
+            <ProtectedRoute onlyUnAuth>
               <ResetPassword />
             </ProtectedRoute>
           }
@@ -87,7 +91,6 @@ const App = () => {
         />
       </Routes>
 
-      {/* Модальные маршруты (рендерятся только если есть backgroundLocation) */}
       {location.state?.background && (
         <Routes>
           <Route
