@@ -30,9 +30,6 @@ const App = () => {
     dispatch(checkUserAuth());
   }, [dispatch]);
 
-  const somt = useSelector((state) => state.orders.order);
-  console.log('вывод состояния', somt);
-
   return (
     <div className={styles.app}>
       <AppHeader />

@@ -6,7 +6,7 @@ import { BurgerIngredients } from '../../components';
 import { BurgerConstructor } from '../../components';
 import { Preloader } from '../../components/ui';
 import { FC } from 'react';
-import { RootState } from 'src/services/store'; // Adjust the path to your store file if necessary
+import { RootState } from '../../services/store';
 
 export const ConstructorPage: FC = () => {
   /** done-TODO: взять переменную из стора */

@@ -12,6 +12,5 @@ const rootReducer = combineSlices(
   ordersSlice,
   userSlice
 );
-console.log('rootReducer', rootReducer);
 
 export default rootReducer;

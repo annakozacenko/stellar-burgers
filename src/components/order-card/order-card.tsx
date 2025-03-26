@@ -5,15 +5,13 @@ import { OrderCardProps } from './type';
 import { TIngredient } from '@utils-types';
 import { OrderCardUI } from '../ui/order-card';
 import { useSelector } from 'react-redux';
-import { RootState } from 'src/services/store'; // Adjust the path to your store file if necessary
+import { RootState } from 'src/services/store';
 
 const maxIngredients = 6;
 
 export const OrderCard: FC<OrderCardProps> = memo(({ order }) => {
   const location = useLocation();
 
-  /** done- взять переменную из стора */
-  //const ingredients: TIngredient[] = [];
   const ingredients = useSelector(
     (state: RootState) => state.ingredients.ingredients
   );

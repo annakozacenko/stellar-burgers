@@ -5,11 +5,6 @@ import { updateUser } from '../../slices/userSlice';
 import { Preloader } from '@ui';
 
 export const Profile: FC = () => {
-  /** TODO: взять переменную из стора */
-  // const user = {
-  //   name: '',
-  //   email: ''
-  // };
   const dispatch = useDispatch();
   const loginUserRequest = useSelector(
     (state: RootState) => state.user.loginUserRequest
@@ -18,8 +13,6 @@ export const Profile: FC = () => {
     name: '',
     email: ''
   };
-
-  //const user = useSelector((state: RootState) => state.user.user);
 
   const [formValue, setFormValue] = useState({
     name: user.name,

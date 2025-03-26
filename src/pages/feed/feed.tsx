@@ -13,8 +13,7 @@ export const Feed: FC = () => {
   useEffect(() => {
     dispatch(getFeed());
   }, [dispatch]);
-  /** ?-TODO: взять переменную из стора */
-  //const orders: TOrder[] = [];
+
   const orders: TOrder[] = useSelector(
     (state: RootState) => state.orders.feed.orders
   );

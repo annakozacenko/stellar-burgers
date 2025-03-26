@@ -1,21 +1,26 @@
-import { FC, SyntheticEvent, useState } from 'react';
+import { FC, SyntheticEvent, useEffect, useState } from 'react';
 import { LoginUI } from '@ui-pages';
 import { RootState, useDispatch, useSelector } from '../../services/store';
 import { Navigate, useNavigate } from 'react-router-dom';
-import { loginUser } from '../../slices/userSlice';
+import { clearError, loginUser } from '../../slices/userSlice';
 import { Preloader } from '@ui';
 
 export const Login: FC = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const loginUserRequest = useSelector(
     (state: RootState) => state.user.loginUserRequest
   );
-  const loginError =
-    useSelector((state: RootState) => state.user.loginUserError) || '';
+  const loginError = useSelector((state: RootState) => state.user.error) || '';
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  useEffect(
+    () => () => {
+      dispatch(clearError());
+    },
+    [dispatch]
+  );
 
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();

@@ -21,7 +21,6 @@ export const OrderInfo: FC = () => {
     };
   }, [dispatch]);
   const orderData = useSelector((state: RootState) => state.orders.order);
-  console.log('id ', id);
 
   const ingredients = useSelector(
     (state: RootState) => state.ingredients.ingredients

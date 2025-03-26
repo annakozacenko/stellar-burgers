@@ -18,7 +18,6 @@ export const FeedInfo: FC = () => {
   );
 
   const readyOrders = getOrders(orders, 'done');
-  console.log(readyOrders);
 
   const pendingOrders = getOrders(orders, 'pending');
 
