@@ -1,15 +1,17 @@
 import { ProfileUI } from '@ui-pages';
 import { FC, SyntheticEvent, useEffect, useState } from 'react';
-import { RootState, useDispatch, useSelector } from '../../services/store';
-import { updateUser } from '../../slices/userSlice';
+import { useDispatch, useSelector } from '../../services/store';
+import {
+  updateUser,
+  userLoginRequestSelector,
+  userSelector
+} from '../../slices/userSlice';
 import { Preloader } from '@ui';
 
 export const Profile: FC = () => {
   const dispatch = useDispatch();
-  const loginUserRequest = useSelector(
-    (state: RootState) => state.user.loginUserRequest
-  );
-  const user = useSelector((state: RootState) => state.user.user) || {
+  const loginUserRequest = useSelector(userLoginRequestSelector);
+  const user = useSelector(userSelector) || {
     name: '',
     email: ''
   };

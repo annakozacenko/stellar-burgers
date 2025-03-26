@@ -22,6 +22,10 @@ export const makeOrder = createAsyncThunk(
 export const orderSlice = createSlice({
   name: 'order',
   initialState,
+  selectors: {
+    orderSelector: (state) => state.order,
+    orderIsLoadingSelector: (state) => state.isLoading
+  },
   reducers: {
     clearOrder: (state) => {
       state.order = null;
@@ -48,3 +52,4 @@ export const orderSlice = createSlice({
 });
 
 export const { clearOrder } = orderSlice.actions;
+export const { orderSelector, orderIsLoadingSelector } = orderSlice.selectors;

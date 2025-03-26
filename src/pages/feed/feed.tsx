@@ -2,11 +2,9 @@ import { Preloader } from '@ui';
 import { FeedUI } from '@ui-pages';
 import { TOrder } from '@utils-types';
 import { FC } from 'react';
-import store, { useDispatch, useSelector } from '../../services/store';
+import { useDispatch, useSelector } from '../../services/store';
 import { useEffect } from 'react';
-import { getFeed } from '../../slices/ordersSlice';
-import { RootState } from '../../services/store';
-import { get } from 'http';
+import { getFeed, ordersFeedOrdersSelector } from '../../slices/ordersSlice';
 
 export const Feed: FC = () => {
   const dispatch = useDispatch();
@@ -14,9 +12,7 @@ export const Feed: FC = () => {
     dispatch(getFeed());
   }, [dispatch]);
 
-  const orders: TOrder[] = useSelector(
-    (state: RootState) => state.orders.feed.orders
-  );
+  const orders: TOrder[] = useSelector(ordersFeedOrdersSelector);
   if (!orders.length) {
     return <Preloader />;
   }

@@ -1,19 +1,21 @@
 import { FC, SyntheticEvent, useEffect, useState } from 'react';
 import { RegisterUI } from '@ui-pages';
-import { RootState, useDispatch, useSelector } from '../../services/store';
-import { Navigate, useNavigate } from 'react-router-dom';
-import { clearError, loginUser, registerUser } from '../../slices/userSlice';
+import { useDispatch, useSelector } from '../../services/store';
+import { useNavigate } from 'react-router-dom';
+import {
+  clearError,
+  registerUser,
+  userErrorSelector,
+  userLoginRequestSelector
+} from '../../slices/userSlice';
 import { Preloader } from '@ui';
 
 export const Register: FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const registerError =
-    useSelector((state: RootState) => state.user.error) || '';
+  const registerError = useSelector(userErrorSelector) || '';
 
-  const loginUserRequest = useSelector(
-    (state: RootState) => state.user.loginUserRequest
-  );
+  const loginUserRequest = useSelector(userLoginRequestSelector);
 
   const [userName, setUserName] = useState('');
   const [email, setEmail] = useState('');

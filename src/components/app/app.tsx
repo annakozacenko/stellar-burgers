@@ -15,7 +15,7 @@ import styles from './app.module.css';
 import { AppHeader, IngredientDetails, Modal, OrderInfo } from '@components';
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { ProtectedRoute } from '../protected-route/protected-route';
-import store, { useDispatch, useSelector } from '../../services/store';
+import { useDispatch } from '../../services/store';
 import { useEffect } from 'react';
 import { getIngredients } from '../../slices/ingredientsSlice';
 import { checkUserAuth } from '../../slices/userSlice';
@@ -37,7 +37,40 @@ const App = () => {
         <Route path='/' element={<ConstructorPage />} />
         <Route path='/feed' element={<Feed />} />
         <Route path='*' element={<NotFound404 />} />
-
+        <Route
+          path='/ingredients/:id'
+          element={
+            <Modal
+              children={<IngredientDetails />}
+              title='Детали ингредиента'
+              onClose={() => navigate('/')}
+            />
+          }
+        />
+        <Route
+          path='/feed/:number'
+          element={
+            <Modal
+              children={<OrderInfo />}
+              title='Детали заказа'
+              onClose={() => navigate('/feed')}
+            />
+          }
+        />
+        <Route
+          path='/profile/orders/:number'
+          element={
+            <Modal
+              children={
+                <ProtectedRoute>
+                  <OrderInfo />
+                </ProtectedRoute>
+              }
+              title='Детали заказа'
+              onClose={() => navigate('/profile/orders')}
+            />
+          }
+        />
         <Route
           path='/login'
           element={

@@ -1,6 +1,6 @@
 import { getIngredientsApi } from '@api';
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { TConstructorIngredient, TIngredient } from '@utils-types';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { TConstructorIngredient } from '@utils-types';
 
 type ingredientsState = {
   ingredients: TConstructorIngredient[];
@@ -15,6 +15,9 @@ const initialState: ingredientsState = {
 export const constructorSlice = createSlice({
   name: 'constructorItems',
   initialState,
+  selectors: {
+    constructorItemsSelector: (state) => state
+  },
   reducers: {
     addIngredient: (state, action) => {
       if (action.payload.type === 'bun') {
@@ -70,3 +73,5 @@ export const {
   moveIngredientDown,
   clearBurgerConstructor
 } = constructorSlice.actions;
+
+export const { constructorItemsSelector } = constructorSlice.selectors;

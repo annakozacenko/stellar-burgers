@@ -67,6 +67,13 @@ export const updateUser = createAsyncThunk('user/undate', updateUserApi);
 export const userSlice = createSlice({
   name: 'user',
   initialState,
+  selectors: {
+    userSelector: (state) => state.user,
+    userNameSelector: (state) => state.user?.name,
+    userErrorSelector: (state) => state.error,
+    userLoginRequestSelector: (state) => state.loginUserRequest,
+    userIsAuthCheckedSelector: (state) => state.isAuthChecked
+  },
   reducers: {
     authChecked: (state) => {
       state.isAuthChecked = true;
@@ -159,6 +166,13 @@ export const userSlice = createSlice({
 });
 
 export const { authChecked, clearError } = userSlice.actions;
+export const {
+  userSelector,
+  userNameSelector,
+  userErrorSelector,
+  userLoginRequestSelector,
+  userIsAuthCheckedSelector
+} = userSlice.selectors;
 
 export const checkUserAuth = createAsyncThunk(
   'user/check',

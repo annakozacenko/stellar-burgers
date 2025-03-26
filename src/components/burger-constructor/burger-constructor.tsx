@@ -2,22 +2,26 @@ import { FC, useMemo } from 'react';
 import { TConstructorIngredient } from '@utils-types';
 import { BurgerConstructorUI } from '@ui';
 import { useSelector } from 'react-redux';
-import { RootState, useDispatch } from '../../services/store';
-import { clearOrder, makeOrder } from '../../slices/orderSlice';
-import { useNavigate } from 'react-router-dom';
-import { clearBurgerConstructor } from '../../slices/constructorSlice';
+import { useDispatch } from '../../services/store';
+import {
+  clearOrder,
+  makeOrder,
+  orderIsLoadingSelector,
+  orderSelector
+} from '../../slices/orderSlice';
+import {
+  clearBurgerConstructor,
+  constructorItemsSelector
+} from '../../slices/constructorSlice';
 
 export const BurgerConstructor: FC = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-  /** done-TODO: взять переменные constructorItems, orderRequest и orderModalData из стора */
-  const constructorItems = useSelector(
-    (state: RootState) => state.constructorItems
-  );
 
-  const orderRequest = useSelector((state: RootState) => state.order.isLoading);
+  const constructorItems = useSelector(constructorItemsSelector);
 
-  const orderModalData = useSelector((state: RootState) => state.order.order);
+  const orderRequest = useSelector(orderIsLoadingSelector);
+
+  const orderModalData = useSelector(orderSelector);
 
   const { bun, ingredients } = constructorItems;
   const orderData: string[] = bun
