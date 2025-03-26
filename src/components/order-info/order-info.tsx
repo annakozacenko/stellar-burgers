@@ -5,19 +5,23 @@ import { TIngredient } from '@utils-types';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from '../../services/store';
 import { RootState } from '../../services/store';
-import { getOrderByNumber } from '../../slices/ordersSlice';
+import { clearOrder, getOrderByNumber } from '../../slices/ordersSlice';
 
 export const OrderInfo: FC = () => {
   const dispatch = useDispatch();
   /** done-TODO: взять переменные orderData и ingredients из стора */
-  const orderData = useSelector((state: RootState) => state.orders.order);
 
-  const { id } = useParams();
+  const id = Number(useParams().number);
   useEffect(() => {
     if (id) {
-      dispatch(getOrderByNumber(Number(id)));
+      dispatch(getOrderByNumber(id));
     }
+    return () => {
+      dispatch(clearOrder());
+    };
   }, [dispatch]);
+  const orderData = useSelector((state: RootState) => state.orders.order);
+  console.log('id ', id);
 
   const ingredients = useSelector(
     (state: RootState) => state.ingredients.ingredients

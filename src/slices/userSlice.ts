@@ -56,8 +56,8 @@ export const loginUser = createAsyncThunk(
 export const logoutUser = createAsyncThunk('user/logOut', async () => {
   const response = await logoutApi();
 
-  deleteCookie('acessToken');
-  localStorage.clear;
+  deleteCookie('accessToken');
+  localStorage.clear();
 
   return response;
 });

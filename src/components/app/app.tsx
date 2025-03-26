@@ -30,7 +30,7 @@ const App = () => {
     dispatch(checkUserAuth());
   }, [dispatch]);
 
-  const somt = useSelector((state) => state.orders.feed);
+  const somt = useSelector((state) => state.orders.order);
   console.log('вывод состояния', somt);
 
   return (
@@ -108,7 +108,7 @@ const App = () => {
             element={
               <Modal
                 children={<OrderInfo />}
-                title='#123456' // Замените на динамическое значение, если нужно
+                title='Детали заказа'
                 onClose={() => navigate('/feed')}
               />
             }
@@ -122,7 +122,7 @@ const App = () => {
                     <OrderInfo />
                   </ProtectedRoute>
                 }
-                title='#123456' // Замените на динамическое значение, если нужно
+                title='Детали заказа'
                 onClose={() => navigate('/profile/orders')}
               />
             }

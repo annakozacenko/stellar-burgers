@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import styles from './app-header.module.css';
 import { TAppHeaderUIProps } from './type';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import {
   BurgerIcon,
   ListIcon,
@@ -15,15 +15,15 @@ export const AppHeaderUI: FC<TAppHeaderUIProps> = ({ userName }) => (
       <div className={styles.menu_part_left}>
         <>
           <BurgerIcon type={'primary'} />
-          <NavLink to={'/'} className='text text_type_main-default ml-2 mr-10'>
+          <Link to={'/'} className='text text_type_main-default ml-2 mr-10'>
             Конструктор
-          </NavLink>
+          </Link>
         </>
         <>
           <ListIcon type={'primary'} />
-          <NavLink to={'/feed'} className='text text_type_main-default ml-2'>
+          <Link to={'/feed'} className='text text_type_main-default ml-2'>
             Лента заказов
-          </NavLink>
+          </Link>
         </>
       </div>
       <div className={styles.logo}>
@@ -31,9 +31,9 @@ export const AppHeaderUI: FC<TAppHeaderUIProps> = ({ userName }) => (
       </div>
       <div className={styles.link_position_last}>
         <ProfileIcon type={'primary'} />
-        <NavLink to={'/profile'} className='text text_type_main-default ml-2'>
+        <Link to={'/profile'} className='text text_type_main-default ml-2'>
           {userName || 'Личный кабинет'}
-        </NavLink>
+        </Link>
       </div>
     </nav>
   </header>
