@@ -23,12 +23,8 @@ const initialState: ordersState = {
   order: null
 };
 
-export const getFeed = createAsyncThunk('orders/getFeed', async () =>
-  getFeedsApi()
-);
-export const getUserOrders = createAsyncThunk('orders/getOrders', async () =>
-  getOrdersApi()
-);
+export const getFeed = createAsyncThunk('orders/getFeed', getFeedsApi);
+export const getUserOrders = createAsyncThunk('orders/getOrders', getOrdersApi);
 export const getOrderByNumber = createAsyncThunk(
   'orders/getOrderByNumber',
   async (number: number) => getOrderByNumberApi(number)
