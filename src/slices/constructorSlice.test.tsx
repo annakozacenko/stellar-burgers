@@ -1,4 +1,3 @@
-import { PayloadAction } from '@reduxjs/toolkit';
 import {
   constructorSlice,
   addIngredient,
